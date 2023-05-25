@@ -13,7 +13,7 @@ app.use(cors());
 const http = require('http').Server(app);
 
 // const socket = require('socket.io')(http, { cors: { origin: 'https://socket-zilu.onrender.com' } });
-const socket = require('socket.io')(http, { cors: { origin: 'http://localhost:3000' } });
+const socket = require('socket.io')(http, { cors: { origin: 'http://localhost:3000/chat' } });
 
 global.onlineUsers = new Map();
 
