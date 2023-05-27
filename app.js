@@ -43,6 +43,12 @@ socket.on('connection', (user) =>
     })
 })
 
+socket.on('getOnlineUsers', (user) => {
+  const onlineUsersList = Array.from(onlineUsers.values());
+  user.emit('onlineUsers', onlineUsersList);
+});
+
+
 mongoose.connect(DB_HOST);
 
 http.listen(PORT, () => {console.log("Server is running")})
