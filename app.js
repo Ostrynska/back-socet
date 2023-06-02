@@ -30,9 +30,9 @@ socket.on('connection', (user) =>
         const res = await getAll();
         user.emit('messageList', res);
     });
-    user.on('newMessage', async (message) =>
+    user.on('newMessage', async (message, date) =>
     {
-        const data = await create(message);
+        const data = await create(message, date);
         user.emit('alertMessage', data);
         user.broadcast.emit('alertMessage', data);
     });
@@ -43,10 +43,10 @@ socket.on('connection', (user) =>
     })
 })
 
-socket.on('getOnlineUsers', (user) => {
-  const onlineUsersList = Array.from(onlineUsers.values());
-  user.emit('onlineUsers', onlineUsersList);
-});
+// socket.on('getOnlineUsers', (user) => {
+//   const onlineUsersList = Array.from(onlineUsers.values());
+//   user.emit('onlineUsers', onlineUsersList);
+// });
 
 
 mongoose.connect(DB_HOST);
