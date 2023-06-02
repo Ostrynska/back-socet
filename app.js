@@ -30,9 +30,10 @@ socket.on('connection', (user) =>
         const res = await getAll();
         user.emit('messageList', res);
     });
-    user.on('newMessage', async (message, date) =>
+    user.on('newMessage', async (message) =>
     {
-        const data = await create(message, date);
+        const { text, name, date } = message;
+        const data = await create({ text, name, date });
         user.emit('alertMessage', data);
         user.broadcast.emit('alertMessage', data);
     });
@@ -49,7 +50,7 @@ socket.on('connection', (user) =>
 // });
 
 
-mongoose.connect(DB_HOST);
+mongoose.connect(DB_HOST, { useNewUrlParser: true, useUnifiedTopology: true });
 
 http.listen(PORT, () => {console.log("Server is running")})
 
