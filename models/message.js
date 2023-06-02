@@ -6,8 +6,15 @@ const messageSchema = Schema({
     },
     name: {
         type: String,
-    }
-});
+    },
+    date: {
+      type: Date,
+    },
+  },
+  {
+    timestamps: true,
+  }
+);
 
 const Message = model('message', messageSchema);
 
