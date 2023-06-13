@@ -12,12 +12,7 @@ app.use(cors());
 
 const http = require('http').Server(app);
 
-const socket = require('socket.io')(http, { cors: { origin: 'https://prime-chat.onrender.com/chat' } });
-// const socket = require('socket.io')(http, { cors: { origin: 'https://front-socket-chat.onrender.com' } });
-// const socket = require('socket.io')(http, { cors: { origin: 'http://localhost:3000' } });
-// const socket = require('socket.io')(http, { cors: { origin: 'https://prime-chat.netlify.app/chat' } });
-
-global.onlineUsers = new Map();
+const socket = require('socket.io')(http, { cors: { origin: 'https://front-socket-chat.onrender.com' } });
 
 socket.on('connection', (user) =>
 {
@@ -27,7 +22,7 @@ socket.on('connection', (user) =>
         onlineUsers.set(user.id, data.name);
         user.emit('changeOnline', onlineUsers.size);
         user.broadcast.emit('changeOnline', onlineUsers.size);
-        
+
         const res = await getAll();
         user.emit('messageList', res);
     });
@@ -44,12 +39,6 @@ socket.on('connection', (user) =>
         user.broadcast.emit('changeOnline', onlineUsers.size);
     })
 })
-
-// socket.on('getOnlineUsers', (user) => {
-//   const onlineUsersList = Array.from(onlineUsers.values());
-//   user.emit('onlineUsers', onlineUsersList);
-// });
-
 
 mongoose.connect(DB_HOST, { useNewUrlParser: true, useUnifiedTopology: true });
 
