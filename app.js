@@ -9,7 +9,7 @@ const { PORT, DB_HOST } = process.env;
 const app = express();
 
 app.use(cors({
-  origin: 'https://prime-chat.onrender.com',
+  origin: 'https://prime-chat.netlify.app/chat',
   methods: ['GET', 'POST'],
   allowedHeaders: ['my-custom-header'],
   credentials: true
@@ -17,7 +17,7 @@ app.use(cors({
 
 const http = require('http').Server(app);
 
-const socket = require('socket.io')(http, { cors: { origin: 'https://prime-chat.onrender.com/chat' } });
+const socket = require('socket.io')(http, { cors: { origin: 'https://prime-chat.netlify.app/chat' } });
 
 global.onlineUsers = new Map();
 
