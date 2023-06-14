@@ -8,11 +8,13 @@ const { PORT, DB_HOST } = process.env;
 
 const app = express();
 
-app.use(cors({
-  origin: '*',
+const corsOptions = {
+  origin: 'https://prime-chat.netlify.app',
   methods: ['GET', 'POST'],
-  allowedHeaders: ['Access-Control-Allow-Origin']
-}), { maxHttpBufferSize: 1e8 });
+  allowedHeaders: ['Access-Control-Allow-Origin'],
+};
+
+app.use(cors(corsOptions));
 
 const http = require('http').Server(app);
 
