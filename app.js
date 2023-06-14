@@ -8,9 +8,14 @@ const { PORT, DB_HOST } = process.env;
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: '*',
+  methods: ['GET', 'POST'],
+  allowedHeaders: ['Access-Control-Allow-Origin']
+}), { maxHttpBufferSize: 1e8 });
 
 const http = require('http').Server(app);
+
 
 const socket = require('socket.io')(http, { cors: { origin: 'https://prime-chat.netlify.app/chat' } });
 //const socket = require('socket.io')(http, { cors: { origin: 'https://front-socket-chat.onrender.com' } });
