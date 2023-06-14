@@ -8,19 +8,11 @@ const { PORT, DB_HOST } = process.env;
 
 const app = express();
 
-const corsOptions = {
-  origin: 'https://prime-chat.netlify.app',
-  methods: ['GET', 'POST'],
-  allowedHeaders: ['Access-Control-Allow-Origin'],
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 
 const http = require('http').Server(app);
 
-
-const socket = require('socket.io')(http, { cors: { origin: 'https://prime-chat.netlify.app/chat' } });
-//const socket = require('socket.io')(http, { cors: { origin: 'https://front-socket-chat.onrender.com' } });
+const socket = require('socket.io')(http, { cors: { origin: 'https://front-socket-chat.onrender.com' } });
 
 socket.on('connection', (user) =>
 {
