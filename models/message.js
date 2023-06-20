@@ -10,6 +10,9 @@ const messageSchema = Schema({
     date: {
       type: String,
     },
+  },
+  {
+    timestamps: true,
   }
 );
 
