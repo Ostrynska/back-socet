@@ -45,4 +45,3 @@ socket.on('connection', (user) =>
 mongoose.connect(DB_HOST);
 
 http.listen(PORT, () => {console.log("Server is running")})
-
