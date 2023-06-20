@@ -12,7 +12,7 @@ app.use(cors());
 
 const http = require('http').Server(app);
 
-const socket = require('socket.io')(http, { cors: { origin: 'https://front-socket-chat.onrender.com/' } });
+const socket = require('socket.io')(http, { cors: { origin: 'https://front-socket-chat.onrender.com' } });
 
 global.onlineUsers = new Map();
 
