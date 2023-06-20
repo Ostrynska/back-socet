@@ -14,6 +14,8 @@ const http = require('http').Server(app);
 
 const socket = require('socket.io')(http, { cors: { origin: 'http://localhost:3000' } });
 
+global.onlineUsers = new Map();
+
 socket.on('connection', (user) =>
 {
     user.emit('changeOnline', onlineUsers.size);
@@ -40,7 +42,7 @@ socket.on('connection', (user) =>
     })
 })
 
-mongoose.connect(DB_HOST, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(DB_HOST);
 
 http.listen(PORT, () => {console.log("Server is running")})
 
